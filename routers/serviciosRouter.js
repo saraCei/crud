@@ -12,18 +12,17 @@ router.get('/nuevo',vistaCrearServicio)
 router.post('/nuevo',nuevoServicio)
 
 // vista formulario editar
-router.get('/editar',)
+router.get('/editar/:id',vistaEditarServicio)
 
 // editar servicio
-router.put('/editar/:id',)
+router.put('/editar',editarServicio)
 
 // eliminar servicio
-router.delete('/:id',)
+// router.delete('/:id',eliminarServicio)
+router.get('eliminar/:id',eliminarServicio)
 
 //leer un servicio
-router.get('/:id',)
-
-
+router.get('/:id',leerUnServicio)
 
 
 module.exports=router;

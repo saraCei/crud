@@ -43,40 +43,62 @@ const nuevoServicio=(req,res)=>{
         }
         res.redirect('/servicios')
     })
-
-    // res.json({
-    //     ok:true,
-    //     msg: 'servicio creado'
-    // })
 }
 
 
 //vista formulario editar
 const vistaEditarServicio=(req,res)=>{
-    res.render('back/editarServicio')
+    const id=req.params
+    
+    Servicio.findOne({_id:id},(error,servicio)=>{
+        if(error){
+            return res.json({
+                ok:false,
+                msg:'Error al leer el servicio'
+            })
+        }else{
+            res.render('back/editarServicio',{servicio})
+        }
+    })
 }
 
 
 // editar servicio
 const editarServicio=(req,res)=>{
-    res.json({
-        ok:true,
-        msg: 'servicio editado'
+
+    const {id,nombre,comentario}=req.body;
+
+    Servicio.findByIdAndUpdate(id,{nombre,comentario},(error,servicio)=>{
+        return res.json({
+            ok:true,
+            msg: 'servicio editado'
+        })
     })
+    res.redirect('/servicios')
 }
 
 
 // eliminar servicio
 const eliminarServicio = (req,res)=>{
-    res.json({
-        ok:true,
-        msg:'servicio eliminado'
+
+    const {id}=req.params;
+    Servicio.findByIdAndRemove(id,(error,servicio)=>{
+        if(error){
+            return res.json({
+                ok:false,
+                msg:'Error al eliminar un servicio'
+            })
+        }
     })
+    res.redirect('/servicios')
 }
 
 // leer un servicio
 const leerUnServicio = (req,res)=>{
-    res.render('back/servicio')
+    const {id}=req.params;
+    Servicio.findOne({_id:id})
+
+    res.render('back/servicio/:id')
 }
 
 
