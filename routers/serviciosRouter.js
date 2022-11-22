@@ -15,11 +15,11 @@ router.post('/nuevo',nuevoServicio)
 router.get('/editar/:id',vistaEditarServicio)
 
 // editar servicio
-router.put('/editar',editarServicio)
+router.post('/editar',editarServicio)
 
 // eliminar servicio
-// router.delete('/:id',eliminarServicio)
-router.get('eliminar/:id',eliminarServicio)
+//router.delete(':id',eliminarServicio)
+router.get('/eliminar/:id',eliminarServicio)
 
 //leer un servicio
 router.get('/:id',leerUnServicio)

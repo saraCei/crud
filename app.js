@@ -19,13 +19,13 @@ app.use(express.json())
 app.use(express.static(__dirname+'/public'));
 
 // Configurar template engines
-app.use('/',require('./routers/indexRouter'));
-app.use('/servicios',require('./routers/serviciosRouter'));
-
 app.set('views',__dirname+'/views');
 app.set('view engine','ejs')
 
 //  // Rutas
+app.use('/',require('./routers/frontRouter'));
+//app.use('/servicios',require('./routers/serviciosRouter')); 
+app.use('/admin/servicios',require('./routers/serviciosRouter')); 
 // app.get('/',(req,res)=>{
 //      res.render('back/index');
 //  })
@@ -39,7 +39,7 @@ app.set('view engine','ejs')
 // })
 
 app.use((req,res)=>{
-    res.status(404).render('back/404',{
+    res.status(404).render('front/404',{
         error:'404',
         msg: 'Página no encontrada'
     })

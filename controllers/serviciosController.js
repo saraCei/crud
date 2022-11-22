@@ -10,7 +10,7 @@ const leerServicios=(req,res)=>{
                 msg: 'Error al leer los servicios'
             })
         }else{
-            console.log(servicios)
+            //console.log(servicios)
                 res.render('back/servicios',{
                     servicios
                 })
@@ -41,20 +41,21 @@ const nuevoServicio=(req,res)=>{
                 msg:'Error al crear el servicio'
             })
         }
-        res.redirect('/servicios')
+        res.redirect('/admin/servicios')
     })
 }
 
 
 //vista formulario editar
 const vistaEditarServicio=(req,res)=>{
-    const id=req.params
-    
+
+    const id=req.params.id; // const {id}=req.params
+
     Servicio.findOne({_id:id},(error,servicio)=>{
         if(error){
             return res.json({
                 ok:false,
-                msg:'Error al leer el servicio'
+                msg: 'Error al editar servicio'
             })
         }else{
             res.render('back/editarServicio',{servicio})
@@ -66,15 +67,19 @@ const vistaEditarServicio=(req,res)=>{
 // editar servicio
 const editarServicio=(req,res)=>{
 
-    const {id,nombre,comentario}=req.body;
+    console.log('hasta aqui bien')
+    const {id,nombre,comentario} = req.body;
 
-    Servicio.findByIdAndUpdate(id,{nombre,comentario},(error,servicio)=>{
-        return res.json({
-            ok:true,
-            msg: 'servicio editado'
-        })
+    Servicio.findByIdAndUpdate(id, {nombre, comentario},(error,servicio)=>{
+        if(error){
+            return res.json({
+                ok:true,
+                msg: 'servicio editado'
+            })
+        }else{
+            res.redirect('/admin/servicios')
+        }
     })
-    res.redirect('/servicios')
 }
 
 
@@ -82,23 +87,32 @@ const editarServicio=(req,res)=>{
 const eliminarServicio = (req,res)=>{
 
     const {id}=req.params;
+
     Servicio.findByIdAndRemove(id,(error,servicio)=>{
         if(error){
             return res.json({
                 ok:false,
-                msg:'Error al eliminar un servicio'
+                msg:'Error al eliminar servicio'
             })
         }
+        res.redirect('/admin/servicios')
     })
-    res.redirect('/servicios')
 }
 
 // leer un servicio
 const leerUnServicio = (req,res)=>{
-    const {id}=req.params;
-    Servicio.findOne({_id:id})
 
-    res.render('back/servicio/:id')
+    const {id}=req.params;
+    Servicio.findOne({_id:id},(error,servicio)=>{
+        if(error){
+            return res.json({
+                ok:false,
+                msg:'Error al leer servicio'
+            })
+        }else{
+            res.render('back/servicio',{servicio})
+        }
+    })
 }
 
 

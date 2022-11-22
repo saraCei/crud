@@ -1,0 +1,14 @@
+<%- include('./templates/header')  %> 
+    <main class="container my-5">
+        <h1 class="mb-5">Servicios del front</h1>
+        <% servicios.forEach(({nombre,comentario,fecha}) => { %>
+            <article class="card mb-5">
+                <div class="card-body">
+                    <h2 class="card-title"><%= nombre %> </h2>
+                    <p class="card-text"><%= fecha.toLocaleDateString('es-ES') %> </p>
+                    <p class="card-text mt-3"> <%= comentario %> </p>
+                </div>
+            </article>
+        <% }) %>
+    </main>
+<%- include('./templates/footer')  %> 

@@ -2,10 +2,10 @@
     <main class="container my-5">
         <h1 class="text-center mb-5" >Editar servicio</h1>
 
-<form action="/servicios/editar" method="POST">
-    <input type="text" name="id" id="id" value="<%=servicio.id%>" hidden>
-    <input type="text" id="nombre" name="nombre"class="form-control mb-2">
-    <textarea name="comentario" id="comentario" rows="10" class="form-control mb-2" placeholder="Descripción del servicio"></textarea>
+<form action="/admin/servicios/editar" method="POST">
+    <input type="hidden" name="id" id="id" value="<%=servicio.id%>">
+    <input type="text" id="nombre" name="nombre" class="form-control mb-2" value="<%=servicio.nombre%>">
+    <textarea name="comentario" id="comentario" rows="10" class="form-control mb-2" placeholder="Descripción del servicio"><%=servicio.comentario%></textarea>
     <div class="d-grid">
         <button type="submit" class="btn btn-danger">Añadir servicio</button>
     </div>

@@ -3,7 +3,7 @@
         <h1 class="text-center mb-5">
             Servicios
         </h1>
-        <a href="/servicios/nuevo" class="btn btn-danger my-5">Añadir un servicio</a>
+        <a href="/admin/servicios/nuevo" class="btn btn-danger my-5">Añadir un servicio</a>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -21,9 +21,9 @@
                             <td><%= nombre %> </td>
                             <td><%= comentario %> </td>
                             <td><%= fecha.toLocaleDateString('es-ES') %> </td>
-                            <td><a href="servicios/editar/<%$=id%>" class="btn btn-danger btn-sm">Editar</a></td>
-                            <td><a href="servicio/<%$=id%>" class="btn btn-danger btn-sm">Ver</a></td>
-                            <td><a href="servicio/eliminar/<%=id%>" class="btn btn-danger btn-sm">Eliminar</a></td>
+                            <td><a href="servicios/editar/<%=id%>" class="btn btn-danger btn-sm">Editar</a></td>
+                            <td><a href="servicios/<%=id%>" class="btn btn-danger btn-sm">Ver</a></td>
+                            <td><a href="servicios/eliminar/<%=id%>" class="btn btn-danger btn-sm">Eliminar</a></td>
                         </tr>
                     <% }) %>
             </tbody>
